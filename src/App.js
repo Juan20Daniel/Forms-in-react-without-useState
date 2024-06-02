@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import InputGroup from './components/InputGroup';
+import { validateData } from './helpers';
 import './App.css';
 
 function App() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const result = validateData(e.target);
+    console.log(result);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div className='container'>
+      <form onSubmit={handleSubmit}>
+        <h1>Formulario</h1>
+        <p className='text'>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <InputGroup 
+          type='text'
+          name='firstname'
+          placeholder='Ingresa un nombre'
+          messageError='El nombre no es válido'
+        />
+        <InputGroup 
+          type='text'
+          name='lastname'
+          placeholder='Ingresa un apellido'
+          messageError='El apellido no es válido'
+        />
+        <InputGroup 
+          type='number'
+          name='ago'
+          placeholder='Ingresa una edad'
+          messageError='La edad no es válida'
+        />
+        <button className='btn-send' type='submit'>Enviar</button>
+      </form>
     </div>
   );
 }
